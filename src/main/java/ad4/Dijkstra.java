@@ -18,6 +18,7 @@ public class Dijkstra {
         while (unsettledNodes.size() != 0) {
             Node currentNode = getLowestDistanceNode(unsettledNodes);
             unsettledNodes.remove(currentNode);
+            System.out.println("removed node: " + currentNode.getName());
             for (Entry<Node, Integer> adjacencyPair : currentNode.getAdjacentNodes().entrySet()) {
                 Node adjacentNode = adjacencyPair.getKey();
                 Integer edgeWeigh = adjacencyPair.getValue();
@@ -27,6 +28,10 @@ public class Dijkstra {
                     unsettledNodes.add(adjacentNode);
                 }
             }
+            for (Node node : unsettledNodes) {
+                System.out.print("\t" + node.getName() + " " + node.getDistance());
+            }
+            System.out.println("done..");
             settledNodes.add(currentNode);
         }
         return graph;
